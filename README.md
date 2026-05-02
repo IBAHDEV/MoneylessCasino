@@ -1,3 +1,3 @@
 # MoneylessCasino
-(Still In Development) Simple Casino Game!
-Creating A Cool Experience Using Math and the best of our brainpower lol.
+
+MoneylessCasino is a simple casino-style game currently in development that focuses on the core mechanics of chance, probability, and decision-making without involving real money. The goal of the project is to create an engaging and fair experience driven by math, where outcomes are transparent and based on clear logic rather than hidden systems. It explores how classic casino concepts like dice, slots, and card games can be reimagined in a way that emphasizes strategy, learning, and experimentation instead of financial risk. As the project evolves, it aims to include multiple mini-games, a progression or scoring system, and a clean user interface while continuing to refine balance and gameplay. Ultimately, MoneylessCasino exists as a creative and educational project that demonstrates how the excitement of uncertainty and probability can stand on its own without monetary stakes.
