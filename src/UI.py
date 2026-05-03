@@ -31,4 +31,5 @@ exit_button.pack(pady=10)
 
 
 
+#make the app run in seprate window
 app.mainloop()
