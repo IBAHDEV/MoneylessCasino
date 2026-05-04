@@ -10,25 +10,6 @@ menu_frame = ctk.CTkFrame(master=app)
 menu_frame.pack(pady=20, padx=60, fill="both", expand=True)
 
 def appMain():
-    # -------MAIN MENU-------
-    # appearance
-    ctk.set_appearance_mode("dark")
-    ctk.set_default_color_theme("blue")
-
-    #title label 
-    title_label = ctk.CTkLabel(master=menu_frame, text="MoneyLessCasino", font=("Roboto", 24))
-    title_label.pack(pady=30)
-
-    # buttons (Enter, Quit and Settings)
-    enter_button = ctk.CTkButton(master=menu_frame, text="Enter", command=print("Entering Minigames........."))
-    enter_button.pack(pady=10)
-
-    settings_button = ctk.CTkButton(master=menu_frame, text="Settings", command=None)
-    settings_button.pack(pady=10)
-
-    exit_button = ctk.CTkButton(master=menu_frame, text="Exit", command=app.destroy)
-    exit_button.pack(pady=10)
-
     #-------MINIGAMES SECTION-------
     #switching from main main menu to minigame selection page
     def show_minigames():
@@ -46,8 +27,25 @@ def appMain():
         current_frame.pack_forget() #hide the game screen
         menu_frame.pack(pady=20, padx=60, fill="both", expand=True) #show main menu again
 
-    #updated enter button
-    enter_button = ctk.CTkButton(master=menu_frame, text="Enter", command=show_minigames)
+    # -------MAIN MENU-------
+    # appearance
+    ctk.set_appearance_mode("dark")
+    ctk.set_default_color_theme("blue")
+
+    #title label 
+    title_label = ctk.CTkLabel(master=menu_frame, text="MoneyLessCasino", font=("Roboto", 24))
+    title_label.pack(pady=30)
+
+    # buttons (Enter, Quit and Settings)
+    enter_button = ctk.CTkButton(master=menu_frame, text="Enter", command=(show_minigames))
+    enter_button.pack(pady=10)
+
+    settings_button = ctk.CTkButton(master=menu_frame, text="Settings", command=None)
+    settings_button.pack(pady=10)
+
+    exit_button = ctk.CTkButton(master=menu_frame, text="Exit", command=app.destroy)
+    exit_button.pack(pady=10)
 
     #make the app run in seprate window
     app.mainloop()
+
