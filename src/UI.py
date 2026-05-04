@@ -19,10 +19,6 @@ def appMain():
     title_label = ctk.CTkLabel(master=menu_frame, text="MoneyLessCasino", font=("Roboto", 24))
     title_label.pack(pady=30)
 
-    # title label
-    title_label = ctk.CTkLabel(master=menu_frame, text="MoneyLessCasino", font=("Roboto", 24))
-    title_label.pack(pady=10)
-
     # buttons (Enter, Quit and Settings)
     enter_button = ctk.CTkButton(master=menu_frame, text="Enter", command=print("Entering Minigames........."))
     enter_button.pack(pady=10)
