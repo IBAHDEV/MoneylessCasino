@@ -16,13 +16,37 @@ Properties = {
     "CardTypes": [1,2,3,4,5,6,7,8,9,10,"Q","K","A"]
 }
 
-GameInfo = {
-    "Round": 1,
-    "PlayerTotal": 0,
-    "DealerTotal": 0,
-    "Win": False,
-
+CardValues = {
+    10: ["Q", "K", "A"],
+    "Joker": "Any",
+    "Ace": "A"
 }
+
+
+CreateableHands = {
+    "Player": {
+        "Card": [],
+        "Suit": [],
+        "PlayerTotal": 0,
+        "Win": False,
+        "MoneyOnTheLine": 0
+    },
+    "Dealer": {
+        "Card": [],
+        "Suit": [],
+        "DealerTotal": 0,
+        "Win": False,
+    }
+}
+
+
+
+def ReturnValue(Value):
+    for i in CardValues:
+        if Value == CardValues[i]:
+            return CardValues[i]
+        else:
+            return Value
 
 
 
@@ -39,7 +63,7 @@ def ReturnRandomSuit(CreatedCards):
     for i in Properties["Suits"]:
         if Properties["Suits"][i] == suitvalue and len(CreatedCards[i]) > 0:
             suit = i
-            RandomCardIndex = randint(0, len(CreatedCards[i]))
+            RandomCardIndex = randint(0, len(CreatedCards[i]) - 1)
             print(len(CreatedCards[i]), RandomCardIndex)
             RandomCardValue = CreatedCards[i][RandomCardIndex]
             CreatedCards[i].pop(RandomCardIndex)
@@ -47,10 +71,6 @@ def ReturnRandomSuit(CreatedCards):
 
 
 def ReturnHands(CreatedCards):
-    CreateableHands = {
-        "Player": [],
-        "Dealer": []
-    }
     PlayerDealt = 0
     DealerDealt = 0
 
@@ -62,31 +82,41 @@ def ReturnHands(CreatedCards):
             DealerCard, DealerSuit = ReturnRandomSuit(CreatedCards)
             print(DealerCard, DealerSuit, DealerDealt)
             print(f"Line {inspect.currentframe().f_lineno}: something happened")
+            CreateableHands["Dealer"]["Card"].append(DealerCard)
+            CreateableHands["Dealer"]["DealerTotal"] += DealerDealt
+            CreateableHands["Dealer"]["Suit"].append(DealerSuit)
         else:
             if PlayerDealt == 2:
-                continue
+                break
             PlayerDealt += 1
             PlayerCard, PlayerSuit = ReturnRandomSuit(CreatedCards)
             print(f"Line {inspect.currentframe().f_lineno}: something happened")
             print(PlayerCard, PlayerSuit, PlayerDealt)
-    return None
+            CreateableHands["Player"]["Card"].append(PlayerCard)
+            CreateableHands["Player"]["PlayerTotal"] += PlayerDealt
+            CreateableHands["Player"]["Suit"].append(PlayerSuit)
+
+    return CreateableHands
 
 
-def Deal():
-    print("Sending First Hand")
+
 
 
 def Hit():
     print("Sending Hit")
 
-def BlackJackMainGameLoop():
+def BlackJackMainGameLoop(money):
+    if not money:
+        money += 1
+    else:
+        CreateableHands["Player"]["MoneyOnTheLine"] += money
     Cards = CreateCards()
     Hands = ReturnHands(Cards)
-
+    print(Hands)
 
 def main():
     print("Starting BlackJack Main Game Loop")
-    BlackJackMainGameLoop()
+    BlackJackMainGameLoop(200)
 
 
 # Testing Purposes
