@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from PIL import Image #add images
 import backend
 
 # root window
@@ -27,13 +28,17 @@ def appMain():
         selection_title = ctk.CTkLabel(master=minigame_selection_frame, text="Select your Minigame", font=("Roboto", 28, "bold"))
         selection_title.grid(row=0, column=1, pady=40)
         
-        #-------BLACKJACK TILE SECTION-------
+        #-------BLACKJACK TILE SECTION-------     
         #blackjack tile creation
         blackjack_tile = ctk.CTkFrame(master=minigame_selection_frame, width=350, height=450)
         blackjack_tile.grid(row=1, column=0, padx=40, pady=20)
 
+        #blackjack image loading
+        blackjack_image_raw = Image.open("images/Blackjack.jpg")
+        blackjack_image_ctk = ctk.CTkImage(light_image=blackjack_image_raw, dark_image=blackjack_image_raw, size=(210,210))
+        
         #blackjack image in tile
-        blackjack_image_place = ctk.CTkButton(master=blackjack_tile, text="Blackjack Image", width=200, height=200, fg_color="green")
+        blackjack_image_place = ctk.CTkButton(master=blackjack_tile, text="", image=blackjack_image_ctk, width=200, height=200, fg_color="green")
         blackjack_image_place.pack(pady=(10,0), padx=10)
 
         #blackjack label underneath image
@@ -41,30 +46,30 @@ def appMain():
         blackjack_label.pack(pady=15)
 
         #-------MIDDLE TILE SECTION-------
-        #blackjack tile creation
-        blackjack_tile = ctk.CTkFrame(master=minigame_selection_frame, width=350, height=450)
-        blackjack_tile.grid(row=1, column=1, padx=40, pady=20)
+        #UNKNOWN tile creation
+        Unknown1_tile = ctk.CTkFrame(master=minigame_selection_frame, width=350, height=450)
+        Unknown1_tile.grid(row=1, column=1, padx=40, pady=20)
 
-        #blackjack image in tile
-        blackjack_image_place = ctk.CTkButton(master=blackjack_tile, width=200, height=200, fg_color="green")
-        blackjack_image_place.pack(pady=(10,0), padx=10)
+        #UNKNOWN image in tile
+        Unknown1_image_place = ctk.CTkButton(master=Unknown1_tile, width=200, height=200, fg_color="green")
+        Unknown1_image_place.pack(pady=(10,0), padx=10)
 
-        #blackjack label underneath image
-        blackjack_label = ctk.CTkLabel(master=blackjack_tile, text="Coming Soon", font=("Roboto",22))
-        blackjack_label.pack(pady=15)
+        #UNKNOWN label underneath image
+        Unknown1_label = ctk.CTkLabel(master=Unknown1_tile, text="Coming Soon", font=("Roboto",22))
+        Unknown1_label.pack(pady=15)
 
         #-------RIGHT TILE SECTION-------
-        #blackjack tile creation
-        blackjack_tile = ctk.CTkFrame(master=minigame_selection_frame, width=350, height=450)
-        blackjack_tile.grid(row=1, column=2, padx=40, pady=20)
+        #UNKNOWN tile creation
+        Unknown2_tile = ctk.CTkFrame(master=minigame_selection_frame, width=350, height=450)
+        Unknown2_tile.grid(row=1, column=2, padx=40, pady=20)
 
-        #blackjack image in tile
-        blackjack_image_place = ctk.CTkButton(master=blackjack_tile, width=200, height=200, fg_color="green")
-        blackjack_image_place.pack(pady=(10,0), padx=10)
+        #UNKNOWN image in tile
+        Unknown2_image_place = ctk.CTkButton(master=Unknown2_tile, width=200, height=200, fg_color="green")
+        Unknown2_image_place.pack(pady=(10,0), padx=10)
 
-        #blackjack label underneath image
-        blackjack_label = ctk.CTkLabel(master=blackjack_tile, text="Coming Soon", font=("Roboto",22))
-        blackjack_label.pack(pady=15)
+        #UNKNOWN label underneath image
+        Unknown2_label = ctk.CTkLabel(master=Unknown2_tile, text="Coming Soon", font=("Roboto",22))
+        Unknown2_label.pack(pady=15)
 
         #-------BACK BUTTON SECTION-------
         #back button to return to main menu
