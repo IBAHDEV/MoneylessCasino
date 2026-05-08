@@ -11,6 +11,67 @@ menu_frame = ctk.CTkFrame(master=app)
 menu_frame.pack(pady=20, padx=60, fill="both", expand=True)
 
 def appMain():
+    #-------Blackjack Main Game SECTION-------
+    def Blackjack_Main(current_frame):
+        current_frame.pack_forget() #removes minigame selection page
+
+        #main game table
+        Blackjack_game_frame = ctk.CTkFrame(master=app)
+        Blackjack_game_frame.pack(pady=20, padx=60, fill="both", expand=True)
+
+        #getting initial hands 
+        deck = backend.CreateCards()
+        hands = backend.ReturnHands(deck)
+
+        #----Dealer Section----
+        dealer_label = ctk.CTkLabel(master=Blackjack_game_frame, text="Dealer", font=("Roboto", 20))
+        dealer_label.pack(pady=(10, 0))
+
+        dealer_card_frame = ctk.CTkFrame(master=Blackjack_game_frame, fg_color="transparent")
+        dealer_card_frame.pack(pady=10)
+
+        #Showing the Dealer cards 
+        for i in range(len(hands["Dealer"]["Card"])):
+            rank = hands["Dealer"]["Card"][i]
+            suit = hands["Dealer"]["Suit"][i]
+
+            #determining file name for cards
+            path = f"images/Cards/{rank}_of_{suit}.png"
+
+            img_data = Image.open(path)
+            img_obj = ctk.CTkImage(light_image=img_data, dark_image=img_data, size=(100, 150))
+
+            card_display = ctk.CTkLabel(master=dealer_card_frame, text="", image=img_obj)
+            card_display.pack(side="left", padx=5)
+
+        #----PLAYER Section----
+        player_label = ctk.CTkLabel(master=Blackjack_game_frame, text="Your Hand", font=("Roboto", 20))
+        player_label.pack(pady=(20, 0))
+
+        player_card_frame = ctk.CTkFrame(master=Blackjack_game_frame, fg_color="transparent")
+        player_card_frame.pack(pady=10)
+
+        #displaying the players cards
+        for i in range(len(hands["Player"]["Card"])):
+            rank = hands["Player"]["Card"][i]
+            suit = hands["Player"]["Suit"][i]
+
+            path = f"images/cards/{rank}_of_{suit}.png"
+
+            img_data = Image.open(path)
+            img_obj = ctk.CTkImage(light_image=img_data, dark_image=img_data, size=(100, 150))
+
+            card_display = ctk.CTkLabel(master=player_card_frame, text="", image=img_obj)
+            card_display.pack(side="left", padx=5)
+
+        #----CONTROLS----
+        btn_frame = ctk.CTkFrame(master=Blackjack_game_frame, fg_color="transparent")
+        btn_frame.pack(pady=30)
+        
+        ctk.CTkButton(master=btn_frame, text="HIT", width=100, fg_color="darkred").pack(side="left", padx=10)
+        ctk.CTkButton(master=btn_frame, text="STAND", width=100, fg_color="darkblue").pack(side="left", padx=10)
+
+
     #-------MINIGAMES SECTION-------
     #switching from main main menu to minigame selection page
     def show_minigames():
@@ -34,11 +95,11 @@ def appMain():
         blackjack_tile.grid(row=1, column=0, padx=40, pady=20)
 
         #blackjack image loading
-        blackjack_image_raw = Image.open("images/Blackjack.jpg")
+        blackjack_image_raw = Image.open("images/Minigame Selection Tile Images/Blackjack.jpg")
         blackjack_image_ctk = ctk.CTkImage(light_image=blackjack_image_raw, dark_image=blackjack_image_raw, size=(210,210))
         
         #blackjack image in tile
-        blackjack_image_place = ctk.CTkButton(master=blackjack_tile, text="", image=blackjack_image_ctk, width=200, height=200, fg_color="green")
+        blackjack_image_place = ctk.CTkButton(master=blackjack_tile, text="", image=blackjack_image_ctk, command=lambda: Blackjack_Main(minigame_selection_frame), width=200, height=200, fg_color="green")
         blackjack_image_place.pack(pady=(10,0), padx=10)
 
         #blackjack label underneath image
