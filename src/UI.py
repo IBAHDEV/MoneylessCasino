@@ -35,6 +35,10 @@ def appMain():
             rank = hands["Dealer"]["Card"][i]
             suit = hands["Dealer"]["Suit"][i]
 
+            #translator for rank 1 of cards
+            if rank == 1:
+                rank = "A"
+
             #determining file name for cards
             path = f"images/Cards/{rank}_of_{suit}.png"
 
@@ -55,6 +59,10 @@ def appMain():
         for i in range(len(hands["Player"]["Card"])):
             rank = hands["Player"]["Card"][i]
             suit = hands["Player"]["Suit"][i]
+
+            #translator for rank 1 of cards
+            if rank == 1:
+                rank = "A"
 
             path = f"images/cards/{rank}_of_{suit}.png"
 
@@ -164,5 +172,4 @@ def appMain():
     exit_button.pack(pady=10)
 
     #make the app run in seprate window
-    app.mainloop()
-
+    app.mainloop()  
