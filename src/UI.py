@@ -39,15 +39,17 @@ def appMain():
 
         #Showing the Dealer cards 
         for i in range(len(hands["Dealer"]["Card"])):
-            rank = hands["Dealer"]["Card"][i]
+            display_rank = hands["Dealer"]["Card"][i]
             suit = hands["Dealer"]["Suit"][i]
 
-            #translator for rank 1 of cards
-            if rank == 1:
-                rank = "A"
-
-            #determining file name for cards
-            path = f"images/Cards/{rank}_of_{suit}.png"
+            #hiding the cards for the dealer on index 1
+            if i == 1:
+                path = "images/Cards/card_back.png"
+            else:
+                #translator for 1 into A for file path
+                if display_rank == 1:
+                    display_rank = "A"
+                path = f"images/Cards/{display_rank}_of_{suit}.png"
 
             img_data = Image.open(path)
             img_obj = ctk.CTkImage(
