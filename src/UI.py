@@ -26,13 +26,15 @@ def appMain():
         #----Dealer Section----
         dealer_label = ctk.CTkLabel(
             master=Blackjack_game_frame, 
-            text="Dealer", font=("Roboto", 20)
+            text="Dealer", 
+            font=("Roboto", 20)
             )
         dealer_label.pack(pady=(10, 0))
 
         dealer_card_frame = ctk.CTkFrame(
             master=Blackjack_game_frame, 
-            fg_color="transparent")
+            fg_color="transparent"
+            )
         dealer_card_frame.pack(pady=10)
 
         #Showing the Dealer cards 
@@ -40,14 +42,12 @@ def appMain():
             rank = hands["Dealer"]["Card"][i]
             suit = hands["Dealer"]["Suit"][i]
 
-            #hiding the Dealers cards
-            if i == 1:
-                path = "images/Cards/card_back.png"
-            else:
-                #the translator for ace
-                if rank == 1:
-                    rank = "A"
-                path = f"images/Cards/{rank}_of_{suit}.png"
+            #translator for rank 1 of cards
+            if rank == 1:
+                rank = "A"
+
+            #determining file name for cards
+            path = f"images/Cards/{rank}_of_{suit}.png"
 
             img_data = Image.open(path)
             img_obj = ctk.CTkImage(
@@ -59,18 +59,10 @@ def appMain():
             card_display = ctk.CTkLabel(
                 master=dealer_card_frame, 
                 text="", 
-                image=img_obj
-                )
+                image=img_obj)
             card_display.pack(side="left", padx=5)
 
         #----PLAYER Section----
-        #calculating the total of the deck for the player
-        player_total = hands["PlayerTotal"]
-
-        player_score_label = ctk.CTkLabel(
-            
-        )
-
         player_label = ctk.CTkLabel(
             master=Blackjack_game_frame, 
             text="Your Hand", 
@@ -120,14 +112,12 @@ def appMain():
             master=btn_frame, 
             text="HIT", 
             width=100, 
-            fg_color="darkred").pack(side="left", padx=10
-            )
+            fg_color="darkred").pack(side="left", padx=10)
         ctk.CTkButton(
             master=btn_frame, 
             text="STAND", 
             width=100, 
-            fg_color="darkblue").pack(side="left", padx=10
-            )
+            fg_color="darkblue").pack(side="left", padx=10)
 
 
     #-------MINIGAMES SECTION-------
@@ -172,7 +162,7 @@ def appMain():
         blackjack_image_place = ctk.CTkButton(
             master=blackjack_tile, text="", 
             image=blackjack_image_ctk, 
-            command=lambda: Blackjack_Main(minigame_selection_frame),
+            command=lambda: Blackjack_Main(minigame_selection_frame), 
             width=200, 
             height=200, 
             fg_color="green"
@@ -199,7 +189,8 @@ def appMain():
         #UNKNOWN image in tile
         Unknown1_image_place = ctk.CTkButton(
             master=Unknown1_tile, 
-            width=200, height=200, 
+            width=200, 
+            height=200, 
             fg_color="green"
             )
         Unknown1_image_place.pack(pady=(10,0), padx=10)
@@ -224,7 +215,8 @@ def appMain():
         #UNKNOWN image in tile
         Unknown2_image_place = ctk.CTkButton(
             master=Unknown2_tile, 
-            width=200, height=200, 
+            width=200, 
+            height=200, 
             fg_color="green"
             )
         Unknown2_image_place.pack(pady=(10,0), padx=10)
@@ -268,8 +260,7 @@ def appMain():
 
     # buttons (Enter, Quit and Settings)
     enter_button = ctk.CTkButton(
-        master=menu_frame, 
-        text="Enter", 
+        master=menu_frame, text="Enter", 
         command=(show_minigames)
         )
     enter_button.pack(pady=10)
@@ -283,7 +274,7 @@ def appMain():
 
     exit_button = ctk.CTkButton(
         master=menu_frame, 
-        text="Exit", 
+        text="Exit",
         command=app.destroy
         )
     exit_button.pack(pady=10)
