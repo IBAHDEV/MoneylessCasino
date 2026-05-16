@@ -16,7 +16,7 @@ def appMain():
         current_frame.pack_forget() #removes minigame selection page
 
         #main game table
-        Blackjack_game_frame = ctk.CTkFrame(master=app)
+        Blackjack_game_frame = ctk.CTkFrame(master=app, fg_color="#0f9145", corner_radius=0)
         Blackjack_game_frame.pack(pady=20, padx=60, fill="both", expand=True)
 
         #getting initial hands 
@@ -27,13 +27,14 @@ def appMain():
         dealer_label = ctk.CTkLabel(
             master=Blackjack_game_frame, 
             text="Dealer", 
-            font=("Roboto", 20)
+            font=("Roboto", 24, "bold"),
+            text_color="white"
             )
-        dealer_label.pack(pady=(10, 0))
+        dealer_label.pack(pady=(30, 0))
 
         dealer_card_frame = ctk.CTkFrame(
             master=Blackjack_game_frame, 
-            fg_color="transparent"
+            fg_color="#0f9145"
             )
         dealer_card_frame.pack(pady=10)
 
@@ -68,13 +69,14 @@ def appMain():
         player_label = ctk.CTkLabel(
             master=Blackjack_game_frame, 
             text="Your Hand", 
-            font=("Roboto", 20)
+            font=("Roboto", 24, "bold"),
+            text_color="white"
             )
-        player_label.pack(pady=(20, 0))
+        player_label.pack(pady=(40, 0))
 
         player_card_frame = ctk.CTkFrame(
             master=Blackjack_game_frame, 
-            fg_color="transparent"
+            fg_color="#0f9145"
             )
         player_card_frame.pack(pady=10)
 
@@ -112,14 +114,28 @@ def appMain():
         
         ctk.CTkButton(
             master=btn_frame, 
-            text="HIT", 
-            width=100, 
-            fg_color="darkred").pack(side="left", padx=10)
+            text="Hit", 
+            width=130, 
+            height=40,
+            font=("Roboto", 16, "bold"),
+            fg_color="white",
+            text_color="black",
+            hover_color="#e0e0e0",
+            border_width=2,
+            border_color="black"
+            ).pack(side="left", padx=15)
         ctk.CTkButton(
             master=btn_frame, 
-            text="STAND", 
-            width=100, 
-            fg_color="darkblue").pack(side="left", padx=10)
+            text="Stay", 
+            width=130, 
+            height=40,
+            font=("Roboto", 16, "bold"),
+            fg_color="white",
+            text_color="black",
+            hover_color="#e0e0e0",
+            border_width=2,
+            border_color="black"
+            ).pack(side="left", padx=15)
 
 
     #-------MINIGAMES SECTION-------
